@@ -1,53 +1,14 @@
-.backgroundImg{
-  position: fixed;
-  /*background-size: 100% 100%;*/
-  height: 100%;
-  width: 100%;
-  z-index: -1;  /*让图片置于最底层*/
-}
-.rec0{
-  position: relative;
-  left: 66rpx;
-  top: 194rpx;
-}
-._title{
-  color: white;
-  height: 110rpx;
-  width: 192rpx;
-  position: absolute;
-  left: 212rpx;
-  font-size: 96rpx;
-}
-.rectangle{
-  background-color: rgb(255,255,255,0.73);
-  width: 618rpx;
-  height: 904rpx;
-  font-size: 56rpx;
-  text-align: center;
-  border-radius: 36rpx;
-  position: absolute;
-  top: 180rpx;
-}
-._again{
-  background-color: rgb(68,181,34);
-  border-radius: 44rpx;
-  font-size: 50rpx;
-  color: white;
-  text-align: center;
-  width: 280rpx;
-  height: 100rpx;
-  position: absolute;
-  top: 1166rpx;
-}
-._back{
-  background-color: rgb(82,197,211);
-  border-radius: 44rpx;
-  font-size: 50rpx;
-  color: white;
-  text-align: center;
-  width: 280rpx;
-  height: 100rpx;
-  position: absolute;
-  top: 1166rpx;
-  left: 334rpx;
-}
+<!--pages/jiesuan/jiesuan.wxml-->
+<image class="backgroundImg" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/5%E7%BB%93%E7%AE%97.jpg?sign=4bd579f152a37d28cb0cc4f9a4b5bf8f&t=1634892840"></image>
+<view class="rec0">
+  <view class="_title">结算</view>
+  <view class="rectangle">
+    玩家1：{{cnt1}}
+    <view></view>
+    玩家2：{{cnt2}}
+  </view>
+  <view class="_again">再来一局</view>
+  <view class="_back">选择模式</view>
+</view>
+
+

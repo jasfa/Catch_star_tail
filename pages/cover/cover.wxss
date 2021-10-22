@@ -1,0 +1,53 @@
+/* pages/cover/cover.wxss */
+.backgroundImage{
+  position: fixed;
+  /*background-size: 100% 100%;*/
+  height: 100%;
+  width: 100%;
+  z-index: -1;  /*让图片置于最底层*/
+}
+.startGame{
+  font-family: fantasy;
+  width: 80%;
+  /*margin-top: 850rpx;*/
+  position: relative;
+  top: 1200rpx;
+  background-color: rgb(255,187,0);  
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size:23px; 
+  text-shadow: 2px 2px 4px grey; /*按钮文字阴影*/
+  font-family: '站酷快乐体';
+  /*box-shadow: 3px 3px 5px grey;  /*按钮阴影*/
+  box-shadow: 0 9px #999;
+  cursor: pointer;
+}
+/*动画效果*/
+.startGame:hover {background-color: rgb(255,187,0);  }
+.startGame:active {
+  background-color: rgb(255,187,0);  
+  box-shadow: 0 10rpx #666;
+  transform: translateY(4px);
+}
+.title{
+  color: white;
+  font-size:45px; 
+  /*align-items: center;
+  justify-content: center;*/
+  position: absolute;
+  right: 30rpx;
+  top: 140rpx;
+  /*margin-top: 90rpx;
+  font-family: '站酷快乐体';*/
+  text-align: center;
+}
+
+@font-face{
+  font-family: '站酷快乐体';/*自定义字体名字*/
+  src: url('cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/fontface/站酷快乐体.ttf') format('truetype')；
+  
+}

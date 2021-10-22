@@ -65,7 +65,7 @@ Page({
     this.setData({
       stack_area: stack_area0
     })
-    this.update_stack()
+    this.setback_stack()
     this.update_place()
     this.update_player1()
     this.update_player2()
@@ -629,7 +629,8 @@ Page({
         this.setData({
           stack_area:stack_area0
         })
-        this.update_stack()
+        this.setback_stack()
+        //this.update_stack()
         this.eat_all1()
       }    
     }
@@ -640,11 +641,13 @@ Page({
       this.setData({
         place_area:place_area0
       })
+      this.setback_stack()
       this.update_place()//更新放置区手牌
       this.setData({
         stack_area:stack_area0
       })
-      this.update_stack()//更新卡组
+      this.setback_stack()
+      //this.update_stack()//更新卡组
     } 
   },
   // 如果当前回合是玩家二
@@ -656,33 +659,33 @@ Page({
       var tmp1 = parseInt(place_area0[0] / 13)
       var tmp2 = parseInt(stack_area0[0] / 13)
       //console.log('tmp1:',tmp1,'tmp2:',tmp2)
-      if(tmp1 === tmp2 && place_area0.length > 0){
+      if(tmp1 === tmp2 && place_area0.length > 0){ //花色相同且放置区有牌
         flag = 1
         place_area0.unshift(stack_area0[0]); //将卡组堆顶手牌放入放置区堆顶
         stack_area0.shift();
         this.setData({
           stack_area:stack_area0
         })
-        /*this.setData({
-          place_area:place_area0
-        })*/
-        this.update_stack()
-        //this.update_place()
+        this.setback_stack()
+        //this.update_stack()
         this.eat_all2()
       }  
     }
-    if(flag === 0){  //放置区无牌
+    if(flag === 0){   //花色不同或放置区无牌
       var tmp=stack_area0[0]
       stack_area0.shift();
       place_area0.unshift(tmp);
       this.setData({
         place_area:place_area0
       })
+      this.setback_stack()
       this.update_place()//更新放置区手牌
       this.setData({
         stack_area:stack_area0
       })
-      this.update_stack()//更新卡组
+      this.setback_stack()
+      //setTimeout(this.update_stack(), 5000)
+      //this.update_stack()//更新卡组
     } 
   },
   // 玩家一吃牌
@@ -789,6 +792,18 @@ Page({
     })
     console.log("跳转成功")
   },
+
+  //展示卡组背面
+  setback_stack(){
+    var s_top=this.fetchImgAddr(52)
+    this.setData({
+        stacktop : s_top,
+        //cnt_stack_area : this.data.stack_area.length
+    })
+    this.setData({
+      cnt_stack_area : this.data.stack_area.length
+    })
+  },
   //更新卡组
   update_stack(){
     var s_top=this.fetchImgAddr(this.data.stack_area[0])
@@ -864,7 +879,7 @@ Page({
       //cnt1_player1_area_grass : this.data.player2_area_grass.length
     })
     this.setData({
-      cnt1_player1_area_grass : this.data.player2_area_grass.length
+      cnt1_player1_area_grass : this.data.player1_area_grass.length
     })
   },
   update_player2(){

@@ -14,10 +14,11 @@ Page({
     })
     /*console.log('cnt1:',cnt1)
     console.log('cnt2:',cnt2)*/
-    if(options.cnt1 < options.cnt2){
+    
+    if(parseInt(options.cnt1)<parseInt(options.cnt2)){
       console.log('玩家一胜利！')
     } 
-    else if(options.cnt1 > options.cnt2){
+    else if(parseInt(options.cnt1)>parseInt(options.cnt2)){
       console.log('玩家二胜利！')
       this.setData({
         win:1

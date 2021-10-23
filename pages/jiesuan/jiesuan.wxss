@@ -8,46 +8,67 @@
 .rec0{
   position: relative;
   left: 66rpx;
-  top: 194rpx;
+  top: 292rpx;
 }
 ._title{
   color: white;
-  height: 110rpx;
-  width: 192rpx;
   position: absolute;
-  left: 212rpx;
+  font-family: 'Courier New', Courier, monospace;
+  left: 166rpx;
   font-size: 96rpx;
 }
 .rectangle{
   background-color: rgb(255,255,255,0.73);
   width: 618rpx;
-  height: 904rpx;
-  font-size: 56rpx;
-  text-align: center;
+  height: 676rpx;
   border-radius: 36rpx;
   position: absolute;
-  top: 180rpx;
+  top: 182rpx;
+}
+.winner{
+  font-size: 72rpx;
+  font-family: fantasy;
+  position: absolute;
+  left: 14rpx;
+  top: 152rpx;
+}
+._1player1{
+  color: #F85A5A;
+  font-size: 72rpx;
+  font-family: fantasy;
+  position: absolute;
+  left: 124rpx;
+  top: 152rpx;
+}
+._1player2{
+  color: #415673;
+  font-size: 72rpx;
+  font-family: fantasy;
+  position: absolute;
+  left: 124rpx;
+  top: 418rpx;
 }
 ._again{
   background-color: rgb(68,181,34);
   border-radius: 44rpx;
-  font-size: 50rpx;
-  color: white;
-  text-align: center;
   width: 280rpx;
   height: 100rpx;
   position: absolute;
-  top: 1166rpx;
+  top: 948rpx;
 }
 ._back{
   background-color: rgb(82,197,211);
   border-radius: 44rpx;
-  font-size: 50rpx;
-  color: white;
-  text-align: center;
   width: 280rpx;
   height: 100rpx;
   position: absolute;
-  top: 1166rpx;
-  left: 334rpx;
+  top: 948rpx;
+  left: 338rpx;
+}
+.text{
+  font-size: 50rpx;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  margin-top: 18rpx;
 }

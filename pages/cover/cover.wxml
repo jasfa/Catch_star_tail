@@ -1,7 +1,7 @@
 <!--pages/cover/cover.wxml-->
 <!-- <button type="primary" bindtap="upImg">上传图片</button> -->
 <!-- 背景 -->
-<image class="backgroundImage" src="cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/test/368598"></image> 
+<image class="backgroundImage" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/1.jpg?sign=83a4ad26a6bb8ba4bbd99516d4240ecd&t=1634981136"></image> 
 <!-- 标题 -->
 <view class="title">
   <view>抓住星星的</view>

@@ -1,0 +1,28 @@
+<!--pages/jiesuan/jiesuan.wxml-->
+<image class="backgroundImg" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/5%E7%BB%93%E7%AE%97.jpg?sign=4bd579f152a37d28cb0cc4f9a4b5bf8f&t=1634892840"></image>
+<view class="rec0">
+  <view class="_title"  wx:if="{{!flag}}">waiting...</view>
+  <view class="_title"  wx:if="{{flag}}">success!!!</view>
+  <view class="rectangle">
+    <!-- 玩家1区域 -->
+    <view class="rec1">
+       <view wx:if="{{flag}}">
+        <image class="player1_img" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/%E5%A4%B4%E5%83%8F/%E7%8E%A9%E5%AE%B62%E5%A4%B4%E5%83%8F.jpg?sign=5bfb0af22d1bfa6465533d3dc615c05b&t=1634984623"></image>
+        <view class="player1_idrec">
+        <view class="player_id">go!go!go!</view>
+      </view>
+      </view> 
+    </view>
+    <!-- 房间号 -->
+    <view class="roomId">房间号：{{roomid}}</view>
+    <!-- 玩家2区域 -->
+    <view class="rec2">
+      <image class="player2_img" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/%E5%A4%B4%E5%83%8F/%E7%8E%A9%E5%AE%B61%E5%A4%B4%E5%83%8F.jpg?sign=43b5a9d06cecc27beeb7ca51eb514d34&t=1634985283"></image>
+      <view class="player2_idrec">
+         <view class="player_id">go!go!go!</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+

@@ -22,6 +22,7 @@
     <!-- 托管 -->
     <image bindtap = "host_switch1" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/%E5%A4%B4%E5%83%8F/%E6%89%98%E7%AE%A1.png?sign=92663efafdaf2deafdd4cdc2e6130c8a&t=1634874190" class="player1_tuoguan"></image>
     <view class="player1_name">player1</view>
+    <image wx:if="{{turn0==1}}" class="tag1" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/%E6%A0%87%E8%AE%B0.png?sign=f93993ffaac3ec56627ce541ffd8cecd&t=1635006951"></image>
     <!-- 玩家1剩余牌数 -->
     <view class="player1_total">Total：{{cnt1_player1_area_grass+cnt1_player1_area_hearts+cnt1_player1_area_spade+cnt1_player1_area_square}}</view>
   </view>
@@ -79,6 +80,7 @@
     <!-- 托管 -->
     <image bindtap = "host_switch2" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/%E5%A4%B4%E5%83%8F/%E6%89%98%E7%AE%A1.png?sign=92663efafdaf2deafdd4cdc2e6130c8a&t=1634874190" class="player2_tuoguan"></image>
     <view class="player2_name">player2</view>
+    <image wx:if="{{turn0==2}}" class="tag2" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/%E6%A0%87%E8%AE%B0.png?sign=f93993ffaac3ec56627ce541ffd8cecd&t=1635006951"></image>
     <!-- 玩家2剩余牌数 -->
     <view class="player2_total">Total：{{cnt2_player2_area_grass+cnt2_player2_area_hearts+cnt2_player2_area_spade+cnt2_player2_area_square}}</view>
   </view>

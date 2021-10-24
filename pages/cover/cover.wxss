@@ -35,19 +35,13 @@
 }
 .title{
   color: white;
-  font-size:45px; 
+  font-size:90rpx; 
   /*align-items: center;
   justify-content: center;*/
+  font-family: monospace;
   position: absolute;
   right: 30rpx;
-  top: 140rpx;
-  /*margin-top: 90rpx;
-  font-family: '站酷快乐体';*/
+  top: 180rpx;
+  /*margin-top: 90rpx;*/
   text-align: center;
-}
-
-@font-face{
-  font-family: '站酷快乐体';/*自定义字体名字*/
-  src: url('cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/fontface/站酷快乐体.ttf') format('truetype')；
-  
 }

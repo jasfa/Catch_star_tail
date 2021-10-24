@@ -1,4 +1,4 @@
-// pages/onlinejoinroom/onlinejoinroom.js
+
 const app = getApp()
 Page({
   data:{

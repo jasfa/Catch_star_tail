@@ -1,0 +1,14 @@
+<!--pages/modelselection/modelselection.wxml-->
+<image class="backgroundImage" src="cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/images/2模式选择.jpg" lazy-load="true"></image>
+<view class="title">
+  <view>抓住星星的</view>
+  <text>尾巴࿐</text>
+</view>
+<view>
+  <button class="btn1" bindtap="go_create">
+    <text>创建对局</text>
+  </button>
+  <button class="btn2" bindtap="go_join">
+    <text>加入对局</text>
+  </button>
+</view>

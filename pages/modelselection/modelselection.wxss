@@ -8,9 +8,10 @@
 }
 .title{
   color: white;
-  font-size:40px; 
+  font-size:80rpx; 
   align-items: center;
   justify-content: center;
+  font-family: monospace;
   margin-top: 140rpx;
   /*font-family: '站酷快乐体';*/
   text-align: center;
@@ -72,7 +73,7 @@
   background-color: rgb(147,147,160);
   color: rgb(253,247,247);
   border-radius: 20rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
   width: 80px;
   height: 75px;
   position: relative;
@@ -86,7 +87,7 @@
   background-color: rgb(147,147,160);
   color: rgb(253,247,247);
   border-radius: 20rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
   width: 80px;
   height: 75px;
   position: relative;
@@ -99,7 +100,7 @@
   background-color: rgb(147,147,160);
   color: rgb(253,247,247);
   border-radius: 20rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
   position: relative;
   top: 206rpx;
   left: 240rpx;

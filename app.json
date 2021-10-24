@@ -1,0 +1,29 @@
+{
+  "pages": [ "pages/onlinecreateroom/onlinecreateroom",
+    "pages/onlinecreatebattle/onlinecreatebattle",
+    "pages/onlinejoinbattle/onlinejoinbattle",
+    "pages/onlinecreateroomwaiting/onlinecreateroomwaiting", 
+    "pages/ai/ai",
+
+    "pages/onlinejoinroom/onlinejoinroom",
+    "pages/onlineselect/onlineselect",
+    "pages/onlinelogin/onlinelogin",
+    "pages/jiesuan/jiesuan",
+    "pages/renren/renren",
+    "pages/modelselection/modelselection",
+    "pages/cover/cover"
+
+    
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom" 
+    
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

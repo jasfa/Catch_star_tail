@@ -191,3 +191,17 @@
   position: absolute;
   top: -106rpx;
 }
+.tag1{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 568rpx;
+  top: -120rpx;
+}
+.tag2{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 568rpx;
+  top: 370rpx;
+}

@@ -17,9 +17,6 @@
       <view class="_1player2">player1：{{cnt1}}</view>
     </view>
   </view>
-  <view class="_again" bindtap="go_renren">
-    <view class="text">再来一局</view>
-  </view>
   <view class="_back" bindtap="go_select">
     <view class="text">选择模式</view>
   </view>

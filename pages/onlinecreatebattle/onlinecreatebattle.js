@@ -46,6 +46,9 @@ Page({
   },
   onLoad(){
     this.setback_stack()
+    this.update_place()
+    this.update_player1()
+    this.update_player2()
   },
   listen(){
     let that = this
@@ -59,11 +62,12 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log("res", res); 
+        //console.log("res", res); 
         if(res.data.code == "200"){
-          if(res.data.your_turn != that.data.your_turn ){
-            that.data.last_code = res.data.last_code
-            that.data.your_turn = res.data.your_turn
+          if(res.data.data.your_turn != that.data.your_turn ){
+            console.log("res", res); 
+            that.data.last_code = res.data.data.last_code
+            that.data.your_turn = res.data.data.your_turn
             that.analyse_op();
           } 
         }
@@ -79,8 +83,8 @@ Page({
             },
             method: 'GET',
             success: function (res) {
-              console.log("res", res);
               if(res.data.code == "200"){
+                console.log("res", res);
                 that.getcnt();
                 wx.navigateTo({
                   url: '/pages/jiesuan/jiesuan?cnt1='+cnt1+'&cnt2='+cnt2
@@ -107,7 +111,7 @@ Page({
     this.setData({
       timer: setInterval(() => {
         that.listen() 
-      }, 1500),
+      }, 1000),
     })
   },
   onHide: function () {
@@ -123,46 +127,49 @@ Page({
     })
   },
   getcnt(){
-    cnt1 = this.data.cnt1_player1_area_grass + this.data.cnt1_player1_area_hearts + this.data.cnt1_player1_area_square + this.data.cnt2_player2_area_spade
+    cnt1 = this.data.cnt1_player1_area_grass + this.data.cnt1_player1_area_hearts + this.data.cnt1_player1_area_square + this.data.cnt1_player1_area_spade
     cnt2 = this.data.cnt2_player2_area_grass + this.data.cnt2_player2_area_hearts + this.data.cnt2_player2_area_square + this.data.cnt2_player2_area_spade
   },
   analyse_op(){
     var last_code0 = this.data.last_code
+    if(last_code0.length == 0)
+      return 
     turn = Number(last_code0[0]) + 1
     var type = Number(last_code0[2])
     var len = last_code0.length
     var card0 = ''
+    //console.log('last_code',last_code0,'type',type,'turn',turn)
     for(var i = 4; i < len ;i++ )
       card0 = card0 + last_code0[i]
-    card0 = Number(this.fetchCard(card))
+    card0 = Number(this.fetchCard(card0))
     if(turn == 1){
       if(type == 0)
-        this.match_stack1(card)
+        this.match_stack1(card0)
       else{
-        var tmp = parseInt(card / 13)
+        var tmp = parseInt(card0 / 13)
         if(tmp == 0)
-          this.match_player1_hearts(card)
+          this.match_player1_hearts(card0)
         else if(tmp == 1)
-          this.match_player1_square(card)
+          this.match_player1_square(card0)
         else if(tmp == 2)
-          this.match_player1_spade(card)
+          this.match_player1_spade(card0)
         else  
-          this.match_player1_grass(card)
+          this.match_player1_grass(card0)
       }
     }
     else{
       if(type == 0)
-        this.match_stack2(card)
+        this.match_stack2(card0)
       else{
-        var tmp = parseInt(card / 13)
+        var tmp = parseInt(card0 / 13)
         if(tmp == 0)
-          this.match_player2_hearts(card)
+          this.match_player2_hearts(card0)
         else if(tmp == 1)
-          this.match_player2_square(card)
+          this.match_player2_square(card0)
         else if(tmp == 2)
-          this.match_player2_spade(card)
+          this.match_player2_spade(card0)
         else  
-          this.match_player2_grass(card)
+          this.match_player2_grass(card0)
       }
     }
     if(this.data.your_turn == true){//到我方轮次，托管开启时
@@ -342,21 +349,29 @@ Page({
     var cards0 = this.data.cards
     var len = cards0.length
     for(var i = 0; i< len ; i++){
-      if(card0 == cards[i])
+      if(card0 == cards0[i])
         return i
     }
   },
   //玩家一托管
   host_switch1(){
-    if(hosted1 === 1)
+    if(hosted1 === 1){
       hosted1 = 0
-    else  
+      wx.showToast({
+        title: '玩家一结束托管',
+      })
+    }
+    else{
       hosted1 = 1
-    //console.log(turn,hosted1)
+      wx.showToast({
+        title: '玩家一开始托管',
+      })
+    }  
     if(turn === 1 && hosted1 === 1)
       this.host1();
   },
   host1(){
+    console.log('玩家一正在进行托管操作')
     this.ai_Host1()
   },
   pushOp(){
@@ -373,6 +388,11 @@ Page({
       method: 'PUT',
       success: function (res) {
         console.log("res", res); 
+        if(res.data.code == "200"){
+          wx.showToast({
+            title: '出牌成功',
+          })
+        }
       },
       fail: function (res) { },
       complete: function (res) { },
@@ -391,6 +411,7 @@ Page({
       return -1
     this.data.card = this.data.cards[player1_area_hearts0[0]]
     this.data.op_type = 1
+    console.log('card',this.data.card,'type',this.data.op_type)
     this.pushOp()
   },
   match_player1_hearts(card0){
@@ -435,8 +456,9 @@ Page({
     var player1_area_square0 = this.data.player1_area_square
     if(player1_area_square0.length <= 0)
       return -1
-    this.data.card = this.data.cards[player1_area_square[0]]
+    this.data.card = this.data.cards[player1_area_square0[0]]
     this.data.op_type = 1
+    console.log('card',this.data.card,'type',this.data.op_type)
     this.pushOp()
   },
   match_player1_square(card0){
@@ -480,8 +502,9 @@ Page({
     var player1_area_spade0 = this.data.player1_area_spade
     if(player1_area_spade0.length <= 0)
       return -1
-    this.data.card = this.data.cards[player1_area_spade[0]]
+    this.data.card = this.data.cards[player1_area_spade0[0]]
     this.data.op_type = 1
+    console.log('card',this.data.card,'type',this.data.op_type)
     this.pushOp()
   },
   match_player1_spade(card0){
@@ -525,8 +548,9 @@ Page({
     var player1_area_grass0 = this.data.player1_area_grass
     if(player1_area_grass0.length <= 0)
       return -1
-    this.data.card = this.data.cards[player1_area_grass[0]]
+    this.data.card = this.data.cards[player1_area_grass0[0]]
     this.data.op_type = 1
+    console.log('card',this.data.card,'type',this.data.op_type)
     this.pushOp()
   },
   match_player1_grass(card0){
@@ -556,7 +580,7 @@ Page({
       place_area:place_area0
     })
     this.setData({
-      player1_area_grass:player1_area_grass
+      player1_area_grass:player1_area_grass0
     })
     this.update_place()
     this.update_player1()
@@ -701,7 +725,7 @@ Page({
       place_area:place_area0
     })
     this.setData({
-      player2_area_grass:player2_area_grass
+      player2_area_grass:player2_area_grass0
     })
     this.update_place()
     this.update_player2()
@@ -725,7 +749,7 @@ Page({
     var stack_area0 = this.data.stack_area
     if(place_area0.length > 0){ //放置区有牌
       var tmp1 = parseInt(place_area0[0] / 13)
-      var tmp2 = parseInt(stack_area0[0] / 13)
+      var tmp2 = parseInt(card0 / 13)
       if(place_area0.length > 0 && tmp1 === tmp2){ //花色相同且放置区有牌
         flag = 1
         place_area0.unshift(card0); //向数组的开头添加一个元素
@@ -761,7 +785,7 @@ Page({
     var stack_area0 = this.data.stack_area
     if(place_area0.length > 0){ //放置区有牌
       var tmp1 = parseInt(place_area0[0] / 13)
-      var tmp2 = parseInt(stack_area0[0] / 13)
+      var tmp2 = parseInt(card0 / 13)
       if(tmp1 === tmp2 && place_area0.length > 0){ //花色相同且放置区有牌
         flag = 1
         place_area0.unshift(card0); //将卡组堆顶手牌放入放置区堆顶

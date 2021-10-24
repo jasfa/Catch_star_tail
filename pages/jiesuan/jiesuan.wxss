@@ -48,14 +48,14 @@
   left: 124rpx;
   top: 418rpx;
 }
-._again{
+/*._again{
   background-color: rgb(68,181,34);
   border-radius: 44rpx;
   width: 280rpx;
   height: 100rpx;
   position: absolute;
   top: 948rpx;
-}
+}*/
 ._back{
   background-color: rgb(82,197,211);
   border-radius: 44rpx;
@@ -63,7 +63,7 @@
   height: 100rpx;
   position: absolute;
   top: 948rpx;
-  left: 338rpx;
+  left: 184rpx;
 }
 .text{
   font-size: 50rpx;

@@ -1,33 +1,36 @@
 <!--pages/modelselection/modelselection.wxml-->
-<image class="backgroundImage" src="cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/images/2模式选择.jpg"></image>
+<image class="backgroundImage" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/2%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9.jpg?sign=31e16669c4625d8b857871cac52e9eac&t=1634981700"></image>
 <view class="title">
   <view>抓住星星的</view>
   <text>尾巴࿐</text>
 </view>
 <view>
-  <button class="btn1" bindtap="govs">
-    <image class="btnImg"  src='cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/images/2扑克.png'></image>
+  <button class="btn1" bindtap="go_renren">
+    <image class="btnImg"  src='https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/2%E6%89%91%E5%85%8B.png?sign=e9ff4702c5d1e5c7cecfe5b22dbe5952&t=1634981752'></image>
     <text>人人对战</text>
   </button>
-  <button class="btn2" bindtap="govs">
-    <image class="btnImg"  src='cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/images/2扑克.png'></image>
+  <button class="btn2" bindtap="go_ai">
+    <image class="btnImg"  src='https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/2%E6%89%91%E5%85%8B.png?sign=e9ff4702c5d1e5c7cecfe5b22dbe5952&t=1634981752'></image>
     <text>人机对战</text>
   </button>
-  <button class="btn3" bindtap="govs">
-    <image class="btnImg"  src='cloud://cloud1-8gizt3c91a9e2cee.636c-cloud1-8gizt3c91a9e2cee-1307872384/images/2扑克.png'></image>
+  <button class="btn3" bindtap="go_online">
+    <image class="btnImg"  src='https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/2%E6%89%91%E5%85%8B.png?sign=e9ff4702c5d1e5c7cecfe5b22dbe5952&t=1634981752'></image>
     <text>在线对战</text>
   </button>
 </view>
 <view>
-  <button class="btn4" style="width:168rpx;height:140rpx">
+  <!-- 战绩 -->
+  <button class="btn4" style="width:168rpx;height:140rpx"bindtap="hisbattle">
     <view class="jiangbei">🏆</view>
     <view>战绩</view>
   </button>
-  <button class="btn5" style="width:168rpx;height:140rpx">
+  <!-- 规则 -->
+  <button class="btn5" style="width:168rpx;height:140rpx" bindtap="rule">
     <view class="jiangbei">📕</view>
     <view>规则</view>
   </button>
-  <button class="btn6" style="width:168rpx;height:140rpx">
+  <!-- 设置 -->
+  <button class="btn6" style="width:168rpx;height:140rpx" bindtap="setting">
     <view class="jiangbei">⚙</view>
     <view>设置</view>
   </button>

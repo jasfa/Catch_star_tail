@@ -4,6 +4,7 @@ var hosted2 = 0
 Page({
   data:{
     // 0-12 红桃hearts 13-25 方片square 26-38 黑桃spade 39-51 草花grass
+    turn0 : 0,
     place_area : [],
     player1_area_hearts : [],
     player1_area_square : [],
@@ -37,12 +38,10 @@ Page({
     player2_area_grass_top : 'https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/%E6%89%91%E5%85%8B/%E8%83%8C%E9%9D%A2.jpg?sign=82438d63ca2418e7bb64cb0b13ca7bd7&t=1634828754'
   },
   onLoad(){
-    /*this.update_stack()
-    this.update_place()
-    this.update_player1()
-    this.update_player2()*/
     this.init_stack()
     console.log(this.data.stack_area)
+    turn =  Math.floor(Math.random() * 2 + 1)
+    console.log(turn)
   },
   //随机生成卡组
   init_stack(){
@@ -248,16 +247,17 @@ Page({
       this.host1();
   },
   host1(){
-    var t = this.match_player1_hearts()
-    //console.log(t)
-    if(t === -1)
-      t = this.match_player1_square()
-    if(t === -1)
-      t = this.match_player1_spade()
-    if(t === -1)
-      t = this.match_player1_grass()
-    if(t === -1)
-      t = this.match_stack()
+    this.ai_Host1()
+    // var t = this.match_player1_hearts()
+    // //console.log(t)
+    // if(t === -1)
+    //   t = this.match_player1_square()
+    // if(t === -1)
+    //   t = this.match_player1_spade()
+    // if(t === -1)
+    //   t = this.match_player1_grass()
+    // if(t === -1)
+    //   t = this.match_stack()
   },
   //玩家二托管
   host_switch2(){
@@ -269,15 +269,16 @@ Page({
       this.host2();
   },
   host2(){
-    var t = this.match_player2_hearts()
-    if(t === -1)
-      t = this.match_player2_square()
-    if(t === -1)
-      t = this.match_player2_spade()
-    if(t === -1)
-      t = this.match_player2_grass()
-    if(t === -1)
-      t = this.match_stack()
+    this.ai_Host2()
+    // var t = this.match_player2_hearts()
+    // if(t === -1)
+    //   t = this.match_player2_square()
+    // if(t === -1)
+    //   t = this.match_player2_spade()
+    // if(t === -1)
+    //   t = this.match_player2_grass()
+    // if(t === -1)
+    //   t = this.match_stack()
   },
   // 玩家一出牌
   match_player1_hearts(){
@@ -293,9 +294,12 @@ Page({
     if(player1_area_hearts0.length <= 0)
       return -1
     turn = 2
+    this.setData({
+      turn0:turn
+    })
     var tmp1 = parseInt(place_area0[0] / 13)
     var tmp2 = parseInt(player1_area_hearts0[0] / 13)
-    console.log('len:',place_area0.length)
+    //console.log('len:',place_area0.length)
     if(tmp1 === tmp2 && place_area0.length > 0){
       this.eat_all1()
       if(hosted2 === 1)
@@ -329,6 +333,9 @@ Page({
     if(player1_area_square0.length <= 0)
       return -1
     turn = 2
+    this.setData({
+      turn0:turn
+    })
     var tmp1 = parseInt(place_area0[0] / 13)
     var tmp2 = parseInt(player1_area_square0[0] / 13)
     if(tmp1 === tmp2 && place_area0.length > 0){
@@ -364,6 +371,9 @@ Page({
     if(player1_area_spade0.length <= 0)
       return -1
     turn = 2
+    this.setData({
+      turn0:turn
+    })
     var tmp1 = parseInt(place_area0[0] / 13)
     var tmp2 = parseInt(player1_area_spade0[0] / 13)
     if(tmp1 === tmp2 && place_area0.length > 0){
@@ -399,6 +409,9 @@ Page({
     if(player1_area_grass0.length <= 0)
       return -1
     turn = 2
+    this.setData({
+      turn0:turn
+    })
     var tmp1 = parseInt(place_area0[0] / 13)
     var tmp2 = parseInt(player1_area_grass0[0] / 13)
     if(tmp1 === tmp2 && place_area0.length > 0){
@@ -436,6 +449,9 @@ Page({
     if(player2_area_hearts0.length <= 0)
       return -1
     turn = 1
+    this.setData({
+      turn0:turn
+    })
     var tmp1 = parseInt(place_area0[0] / 13)
     var tmp2 = parseInt(player2_area_hearts0[0] / 13)
     if(tmp1 === tmp2 && place_area0.length > 0){
@@ -471,6 +487,9 @@ Page({
     if(player2_area_square0.length <= 0)
       return -1
     turn = 1
+    this.setData({
+      turn0:turn
+    })
     var tmp1 = parseInt(place_area0[0] / 13)
     var tmp2 = parseInt(player2_area_square0[0] / 13)
     if(tmp1 === tmp2 && place_area0.length > 0){
@@ -506,6 +525,9 @@ Page({
     if(player2_area_spade0.length <= 0)
       return -1
     turn = 1
+    this.setData({
+      turn0:turn
+    })
     var tmp1 = parseInt(place_area0[0] / 13)
     var tmp2 = parseInt(player2_area_spade0[0] / 13)
     if(tmp1 === tmp2 && place_area0.length > 0){
@@ -570,10 +592,16 @@ Page({
     if(turn === 1){
       this.match_stack1();
       turn = 2
+      this.setData({
+        turn0:turn
+      })
     }
     else{
       this.match_stack2();
       turn = 1
+      this.setData({
+        turn0:turn
+      })
     }
     if(stack_area0.length === 0){
       var player1_area_hearts0 = this.data.player1_area_hearts
@@ -587,6 +615,7 @@ Page({
       console.log('游戏结束啦！')
       var cnt1 = player1_area_hearts0.length + player1_area_spade0.length + player1_area_square0.length + player1_area_grass0.length 
       var cnt2 = player2_area_hearts0.length + player2_area_spade0.length + player2_area_square0.length + player2_area_grass0.length 
+      console.log(cnt1,cnt2)
       if(cnt1 < cnt2){
         console.log('玩家一胜利！')
       } 
@@ -610,7 +639,7 @@ Page({
     }
     if(turn === 2){
       if(hosted2 === 1)
-        this.host1()
+        this.host2()
     }
   },
   // 如果当前回合是玩家一
@@ -783,7 +812,6 @@ Page({
     //更新玩家2堆顶图片
     this.update_player2();
   },
-
   //跳转
   gojiesuan(){
     console.log("点击了跳转")
@@ -792,7 +820,6 @@ Page({
     })
     console.log("跳转成功")
   },
-
   //展示卡组背面
   setback_stack(){
     var s_top=this.fetchImgAddr(52)
@@ -817,8 +844,9 @@ Page({
   },
   //更新放置区手牌
   update_place(){
-    var i=this.data.place_area[0]
-    if(this.data.place_area.length==0) i=52
+    var i = 52
+    if(this.data.place_area.length > 0) 
+    i=this.data.place_area[0]
     var p_top=this.fetchImgAddr(i)
     this.setData({
       placetop:p_top,
@@ -835,8 +863,9 @@ Page({
     this.update_player1_area_square();
   },
   update_player1_area_hearts(){
-    var i=this.data.player1_area_hearts[0]
-    if(this.data.player1_area_hearts.length==0) i=52
+    var i=52
+    if(this.data.player1_area_hearts.length > 0) 
+    i=this.data.player1_area_hearts[0]
     var p1h_top=this.fetchImgAddr(i)
     this.setData({
       player1_area_hearts_top:p1h_top,
@@ -847,8 +876,9 @@ Page({
     })
   },
   update_player1_area_spade(){
-    var i=this.data.player1_area_spade[0]
-    if(this.data.player1_area_spade.length==0) i=52
+    var i=52
+    if(this.data.player1_area_spade.length>0) 
+    i=this.data.player1_area_spade[0]
     var p1sq_top=this.fetchImgAddr(i)
     this.setData({
       player1_area_spade_top:p1sq_top,
@@ -859,8 +889,9 @@ Page({
     })
   },
   update_player1_area_square(){
-    var i=this.data.player1_area_square[0]
-    if(this.data.player1_area_square.length==0) i=52
+    var i=52
+    if(this.data.player1_area_square.length > 0) 
+    i=this.data.player1_area_square[0]
     var p1sp_top=this.fetchImgAddr(i)
     this.setData({
       player1_area_square_top:p1sp_top,
@@ -871,8 +902,9 @@ Page({
     })
   },
   update_player1_area_grass(){
-    var i=this.data.player1_area_grass[0]
-    if(this.data.player1_area_grass.length==0) i=52
+    var i=52
+    if(this.data.player1_area_grass.length > 0) 
+    i=this.data.player1_area_grass[0]
     var p1g_top=this.fetchImgAddr(i)
     this.setData({
       player1_area_grass_top:p1g_top,
@@ -889,8 +921,9 @@ Page({
     this.update_player2_area_square();
   },
   update_player2_area_hearts(){
-    var i=this.data.player2_area_hearts[0]
-    if(this.data.player2_area_hearts.length==0) i=52
+    var i=52
+    if(this.data.player2_area_hearts.length > 0) 
+    i=this.data.player2_area_hearts[0]
     var p2h_top=this.fetchImgAddr(i)
     this.setData({
       player2_area_hearts_top:p2h_top,
@@ -901,8 +934,9 @@ Page({
     })
   },
   update_player2_area_spade(){
-    var i=this.data.player2_area_spade[0]
-    if(this.data.player2_area_spade.length==0) i=52
+    var i=52
+    if(this.data.player2_area_spade.length>0) 
+    i=this.data.player2_area_spade[0]
     var p2sq_top=this.fetchImgAddr(i)
     this.setData({
       player2_area_spade_top:p2sq_top,
@@ -913,8 +947,9 @@ Page({
     })
   },
   update_player2_area_square(){
-    var i=this.data.player2_area_square[0]
-    if(this.data.player2_area_square.length==0) i=52
+    var i=52
+    if(this.data.player2_area_square.length > 0) 
+    i=this.data.player2_area_square[0]
     var p2sp_top=this.fetchImgAddr(i)
     this.setData({
       player2_area_square_top:p2sp_top,
@@ -925,8 +960,9 @@ Page({
     })
   },
   update_player2_area_grass(){
-    var i=this.data.player2_area_grass[0]
-    if(this.data.player2_area_grass.length==0) i=52
+    var i=52
+    if(this.data.player2_area_grass.length > 0) 
+    i=this.data.player2_area_grass[0]
     var p2g_top=this.fetchImgAddr(i)
     this.setData({
       player2_area_grass_top:p2g_top,
@@ -935,5 +971,282 @@ Page({
     this.setData({
       cnt2_player2_area_grass : this.data.player2_area_grass.length
     })
+  },
+  //AI操作
+  ai_Host1(){
+    //console.log('轮到玩家一了')
+    var player1_area_hearts0 = this.data.player1_area_hearts
+    var player1_area_square0 = this.data.player1_area_square
+    var player1_area_spade0 = this.data.player1_area_spade
+    var player1_area_grass0 = this.data.player1_area_grass
+    var player2_area_hearts0 = this.data.player2_area_hearts
+    var player2_area_square0 = this.data.player2_area_square
+    var player2_area_spade0 = this.data.player2_area_spade
+    var player2_area_grass0 = this.data.player2_area_grass
+    var stack_area0 = this.data.stack_area
+    var place_area0 = this.data.place_area
+    var cnt1 = player1_area_hearts0.length + player1_area_spade0.length + player1_area_square0.length + player1_area_grass0.length 
+    var cnt2 = player2_area_hearts0.length + player2_area_spade0.length + player2_area_square0.length + player2_area_grass0.length 
+    var cnts = stack_area0.length
+    var cntp = place_area0.length
+    if(cnt1 + 3 * cnts + cntp < cnt2){//如果当前已经为必胜点，则选择抽卡，加速游戏结束
+      //console.log('1如果当前已经为必胜点')
+      this.match_stack()
+    }
+    else if(cnt1 == 0){//如果无手牌则只能抽牌
+      //console.log('1当前无手牌')
+      this.match_stack()
+    }
+    else if(cntp == 0){//如果放置区为空
+      if(cnt1 < 13){//如果当前处于优势，就抽牌
+        //console.log('1放置区为空且处于优势')
+        this.match_stack()
+      }
+      else{//否则出数量多的那堆
+        if(player1_area_hearts0.length > 0 && player1_area_hearts0.length >= player1_area_spade0.length && player1_area_hearts0.length >= player1_area_square0.length && player1_area_hearts0.length >= player1_area_grass0.length ){
+          //console.log('1放置区为空且出红桃')
+          this.match_player1_hearts()
+        }
+        else if(player1_area_square0.length > 0 && player1_area_square0.length >= player1_area_hearts0.length && player1_area_square0.length >= player1_area_spade0.length && player1_area_square0.length >= player1_area_grass0.length ){
+          //console.log('1放置区为空且出方片')
+          this.match_player1_square()
+        }
+        else if(player1_area_spade0.length > 0 && player1_area_spade0.length >= player1_area_hearts0.length && player1_area_spade0.length >= player1_area_square0.length && player1_area_spade0.length >= player1_area_grass0.length ){
+          //console.log('1放置区为空且出黑桃')
+          this.match_player1_spade()
+        }
+        else if(player1_area_grass0.length > 0 && player1_area_grass0.length >= player1_area_hearts0.length && player1_area_grass0.length >= player1_area_square0.length && player1_area_grass0.length >= player1_area_spade0.length ){
+          //console.log('1放置区为空且出草花')
+          this.match_player1_grass() 
+        }
+      } 
+    }
+    else{//放置区非空则需要判断顶部
+      if(cnt1 + cntp < 13){//如果吃牌后仍然处于优势
+        var top = parseInt(place_area0[0] / 13)
+        if(top == 0){//红心
+          if(player1_area_hearts0.length > 0){
+            //console.log('1放置区不为空且吃牌后处于优势','顶为红桃且出红桃')
+            this.match_player1_hearts()
+          } 
+          else{
+            //console.log('1放置区不为空且吃牌后处于优势','顶为红桃且出抽牌')
+            this.match_stack()
+          }
+        }
+        else if(top == 1){//方片
+          if(player1_area_square0.length > 0){
+            //console.log('1放置区不为空且吃牌后处于优势','顶为方片且出方片')
+            this.match_player1_square()
+          }
+          else {
+            //console.log('1放置区不为空且吃牌后处于优势','顶为方片且出抽牌')
+            this.match_stack()
+          }
+        }
+        else if(top == 2){//黑桃
+          if(player1_area_spade0.length > 0){
+            //console.log('1放置区不为空且吃牌后处于优势','顶为黑桃且出黑桃')
+            this.match_player1_spade()
+          }
+          else  {
+            //console.log('1放置区不为空且吃牌后处于优势','顶为黑桃且出抽牌')
+            this.match_stack()
+          }  
+        }
+        else{//草花
+          if(player1_area_grass0.length > 0){
+            //console.log('1放置区不为空且吃牌后处于优势','顶为草花且出草花')
+            this.match_player1_grass()
+          }
+          else  {
+            //console.log('1放置区不为空且吃牌后处于优势','顶为草花且出抽牌')
+            this.match_stack()
+          }
+        } 
+      }
+      else{//尽量不吃牌,有牌则出数量多的那堆
+        var top = parseInt(place_area0[0] / 13)
+        if(top == 0){//红心
+          if(player1_area_square0.length > 0 && player1_area_square0.length >= player1_area_spade0.length && player1_area_square0.length >= player1_area_grass0.length ){
+            //console.log('1放置区非空','顶为红桃','出方片')
+            this.match_player1_square()
+          }
+          else if(player1_area_spade0.length > 0 && player1_area_spade0.length >= player1_area_square0.length && player1_area_spade0.length >= player1_area_grass0.length ){
+            //console.log('1放置区非空','顶为红桃','出黑桃')
+            this.match_player1_spade()
+          }
+          else if(player1_area_grass0.length > 0 && player1_area_grass0.length >= player1_area_square0.length && player1_area_grass0.length >= player1_area_spade0.length ){
+            //console.log('1放置区非空','顶为红桃','出草花')
+            this.match_player1_grass()  
+          }
+          else{
+            //console.log('1放置区非空','顶为红桃','抽牌')
+            this.match_stack()
+          }
+        }
+        else if(top == 1){//方片
+          if(player1_area_hearts0.length > 0 && player1_area_hearts0.length >= player1_area_spade0.length && player1_area_hearts0.length >= player1_area_grass0.length ){
+            //console.log('1放置区非空','顶为方片','出红桃')
+            this.match_player1_hearts()
+          }
+          else if(player1_area_spade0.length > 0 && player1_area_spade0.length >= player1_area_hearts0.length && player1_area_spade0.length >= player1_area_grass0.length ){
+            //console.log('1放置区非空','顶为方片','出黑桃')
+            this.match_player1_spade()
+          }
+          else if(player1_area_grass0.length > 0 && player1_area_grass0.length >= player1_area_hearts0.length && player1_area_grass0.length >= player1_area_spade0.length ){
+            //console.log('1放置区非空','顶为方片','出草花')
+            this.match_player1_grass() 
+          }
+          else{
+            //console.log('1放置区非空','顶为方片','抽牌')
+            this.match_stack() 
+          }
+        }
+        else if(top == 2){//黑桃
+          if(player1_area_hearts0.length > 0 && player1_area_hearts0.length >= player1_area_square0.length && player1_area_hearts0.length >= player1_area_grass0.length ){
+            //console.log('1放置区非空','顶为黑桃','出红桃')
+            this.match_player1_hearts()  
+          }
+          else if(player1_area_square0.length > 0 && player1_area_square0.length >= player1_area_hearts0.length && player1_area_square0.length >= player1_area_grass0.length ){
+            //console.log('1放置区非空','顶为黑桃','出方片')
+            this.match_player1_square()
+          }
+          else if(player1_area_grass0.length > 0 && player1_area_grass0.length >= player1_area_hearts0.length && player1_area_grass0.length >= player1_area_square0.length){
+            //console.log('1放置区非空','顶为黑桃','出草花')
+            this.match_player1_grass()  
+          }
+          else{
+            //console.log('1放置区非空','顶为黑桃','抽牌')
+            this.match_stack()
+          }
+        }
+        else{//草花
+          if(player1_area_hearts0.length > 0 && player1_area_hearts0.length >= player1_area_spade0.length && player1_area_hearts0.length >= player1_area_square0.length ){
+            //console.log('1放置区非空','顶为草花','出红桃')
+            this.match_player1_hearts()
+          }
+          else if(player1_area_square0.length > 0 && player1_area_square0.length >= player1_area_hearts0.length && player1_area_square0.length >= player1_area_spade0.length ){
+            //console.log('1放置区非空','顶为草花','出方片')
+            this.match_player1_square()
+          }
+          else if(player1_area_spade0.length > 0 && player1_area_spade0.length >= player1_area_hearts0.length && player1_area_spade0.length >= player1_area_square0.length){
+            //console.log('1放置区非空','顶为草花','出黑桃')
+            this.match_player1_spade()
+          }
+          else{
+            //console.log('1放置区非空','顶为草花','抽牌')
+            this.match_stack()
+          }
+        } 
+      }
+    }
+  },
+  ai_Host2(){
+    //console.log('轮到玩家二了')
+    var player1_area_hearts0 = this.data.player1_area_hearts
+    var player1_area_square0 = this.data.player1_area_square
+    var player1_area_spade0 = this.data.player1_area_spade
+    var player1_area_grass0 = this.data.player1_area_grass
+    var player2_area_hearts0 = this.data.player2_area_hearts
+    var player2_area_square0 = this.data.player2_area_square
+    var player2_area_spade0 = this.data.player2_area_spade
+    var player2_area_grass0 = this.data.player2_area_grass
+    var stack_area0 = this.data.stack_area
+    var place_area0 = this.data.place_area
+    var cnt1 = player1_area_hearts0.length + player1_area_spade0.length + player1_area_square0.length + player1_area_grass0.length 
+    var cnt2 = player2_area_hearts0.length + player2_area_spade0.length + player2_area_square0.length + player2_area_grass0.length 
+    var cnts = stack_area0.length
+    var cntp = place_area0.length
+    if(cnt2 + 3 * cnts + cntp < cnt1)//如果当前已经为必胜点，则选择抽卡，加速游戏结束
+      this.match_stack()
+    else if(cnt2 == 0)//如果无手牌则只能抽牌
+      this.match_stack()
+    else if(cntp == 0){//如果放置区为空
+      if(cnt2 < 13)//如果当前处于优势，就抽牌
+        this.match_stack()
+      else{//否则出数量多的那堆
+        if(player2_area_hearts0.length > 0 && player2_area_hearts0.length >= player2_area_spade0.length && player2_area_hearts0.length >= player2_area_square0.length && player2_area_hearts0.length >= player2_area_grass0.length )
+          this.match_player2_hearts()
+        else if(player2_area_square0.length > 0 && player2_area_square0.length >= player2_area_hearts0.length && player2_area_square0.length >= player2_area_spade0.length && player2_area_square0.length >= player2_area_grass0.length )
+          this.match_player2_square()
+        else if(player2_area_spade0.length > 0 && player2_area_spade0.length >= player2_area_hearts0.length && player2_area_spade0.length >= player2_area_square0.length && player2_area_spade0.length >= player2_area_grass0.length )
+          this.match_player2_spade()
+        else if(player2_area_grass0.length > 0 && player2_area_grass0.length >= player2_area_hearts0.length && player2_area_grass0.length >= player2_area_square0.length && player2_area_grass0.length >= player2_area_spade0.length )
+          this.match_player2_grass()  
+      } 
+    }
+    else{//放置区非空则需要判断顶部
+      if(cnt2 + cntp < 13){//如果吃牌后仍然处于优势
+        var top = parseInt(place_area0[0] / 13)
+        if(top == 0){//红心
+          if(player2_area_hearts0.length > 0)
+            this.match_player2_hearts()
+          else
+            this.match_stack()
+        }
+        else if(top == 1){//方片
+          if(player2_area_square0.length > 0)
+            this.match_player2_square()
+          else  
+            this.match_stack()
+        }
+        else if(top == 2){//黑桃
+          if(player2_area_spade0.length > 0)
+            this.match_player2_spade()
+          else  
+            this.match_stack()
+        }
+        else{//草花
+          if(player2_area_grass0.length > 0)
+            this.match_player2_grass()
+          else  
+            this.match_stack()
+        } 
+      }
+      else{//尽量不吃牌,有牌则出数量多的那堆
+        var top = parseInt(place_area0[0] / 13)
+        if(top == 0){//红心
+          if(player2_area_square0.length > 0 && player2_area_square0.length >= player2_area_spade0.length && player2_area_square0.length >= player2_area_grass0.length )
+            this.match_player2_square()
+          else if(player2_area_spade0.length > 0 && player2_area_spade0.length >= player2_area_square0.length && player2_area_spade0.length >= player2_area_grass0.length )
+            this.match_player2_spade()
+          else if(player2_area_grass0.length > 0 && player2_area_grass0.length >= player2_area_square0.length && player2_area_grass0.length >= player2_area_spade0.length )
+            this.match_player2_grass()  
+          else
+            this.match_stack()
+        }
+        else if(top == 1){//方片
+          if(player2_area_hearts0.length > 0 && player2_area_hearts0.length >= player2_area_spade0.length && player2_area_hearts0.length >= player2_area_grass0.length )
+            this.match_player2_hearts()
+          else if(player2_area_spade0.length > 0 && player2_area_spade0.length >= player2_area_hearts0.length && player2_area_spade0.length >= player2_area_grass0.length )
+            this.match_player2_spade()
+          else if(player2_area_grass0.length > 0 && player2_area_grass0.length >= player2_area_hearts0.length && player2_area_grass0.length >= player2_area_spade0.length )
+            this.match_player2_grass() 
+          else
+            this.match_stack() 
+        }
+        else if(top == 2){//黑桃
+          if(player2_area_hearts0.length > 0 && player2_area_hearts0.length >= player2_area_square0.length && player2_area_hearts0.length >= player2_area_grass0.length )
+            this.match_player2_hearts()
+          else if(player2_area_square0.length > 0 && player2_area_square0.length >= player2_area_hearts0.length && player2_area_square0.length >= player2_area_grass0.length )
+            this.match_player2_square()
+          else if(player2_area_grass0.length > 0 && player2_area_grass0.length >= player2_area_hearts0.length && player2_area_grass0.length >= player2_area_square0.length )
+            this.match_player2_grass()  
+          else 
+            this.match_stack()
+        }
+        else{//草花
+          if(player2_area_hearts0.length > 0 && player2_area_hearts0.length >= player2_area_spade0.length && player2_area_hearts0.length >= player2_area_square0.length )
+            this.match_player2_hearts()
+          else if(player2_area_square0.length > 0 && player2_area_square0.length >= player2_area_hearts0.length && player2_area_square0.length >= player2_area_spade0.length )
+            this.match_player2_square()
+          else if(player2_area_spade0.length > 0 && player2_area_spade0.length >= player2_area_hearts0.length && player2_area_spade0.length >= player2_area_square0.length)
+            this.match_player2_spade()
+          else 
+            this.match_stack()
+        } 
+      }
+    }
   }
 })

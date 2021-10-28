@@ -1,0 +1,25 @@
+<!--pages/jiesuan/jiesuan.wxml-->
+<image class="backgroundImg" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/5%E7%BB%93%E7%AE%97.jpg?sign=4bd579f152a37d28cb0cc4f9a4b5bf8f&t=1634892840"></image>
+<view class="rec0">
+    <view class="_title">🏆结算</view>
+  
+  <view class="rectangle">
+    <!-- 平局或者玩家1胜利 -->
+    <view wx:if="{{!win}}">
+      <view class="winner">👑</view>
+      <view class="_1player1">player1：{{cnt1}}</view>
+      <view class="_1player2">player2：{{cnt2}}</view>
+    </view>
+    <!-- 玩家2胜利 -->
+    <view wx:else>
+      <view class="winner">👑</view>
+      <view class="_1player1">player2：{{cnt2}}</view>
+      <view class="_1player2">player1：{{cnt1}}</view>
+    </view>
+  </view>
+  <view class="_back" bindtap="go_select">
+    <view class="text">选择模式</view>
+  </view>
+</view>
+
+

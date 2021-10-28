@@ -1,0 +1,11 @@
+<image class="backgroundImg" src="https://636c-cloud1-8gizt3c91a9e2cee-1307872384.tcb.qcloud.la/images/5%E7%BB%93%E7%AE%97.jpg?sign=4bd579f152a37d28cb0cc4f9a4b5bf8f&t=1634892840"></image>
+<view class="rec0">
+  <view class="_title">创建对局</view>
+  <view class="rec1">
+    <view class="text" bindtap = "fetchId">获取您的对局ID：</view>
+    <view class="_id" >{{id}}</view>
+  </view>
+  <view class="rec2">
+    <view class="text1" bindtap="enter">进入</view>
+  </view>
+</view>
